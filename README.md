@@ -1,4 +1,4 @@
-# Web Scraping Project README
+# Single Page Scrape
 
 This project demonstrates web scraping using Node.js to extract product information from a list of URLs and save it to a CSV file. It utilizes several packages to accomplish this task.
 
