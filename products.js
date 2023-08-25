@@ -35,13 +35,19 @@ async function extractProductInfo(html) {
     const $ = cheerio.load(html);
     const title = $('.product-single__title').text();
     const price = $('.product__price').text();
-    const feature_image = $('.photoswipe__image').attr('data-photoswipe-src');
+    let feature_image = $('.photoswipe__image').attr('data-photoswipe-src');
+    if (feature_image) {
+        // Remove the starting "//" from the feature image URL
+        feature_image = feature_image.replace(/^\/\//, '');
+    }
     const image_urls = [];
 
     $('.product__thumbs--scroller .product__thumb-item .image-wrap a').each((index, element) => {
         const alt_image = $(element).attr('href');
         if (alt_image) {
-            image_urls.push(alt_image);
+            // Remove the starting "//" from the image URL
+            const cleanedImageUrl = alt_image.replace(/^\/\//, '');
+            image_urls.push(cleanedImageUrl);
         }
     });
 
